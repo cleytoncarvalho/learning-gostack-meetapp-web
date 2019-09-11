@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Wrapper, Content } from './styles';
+import { Container, Content } from './styles';
 
 import logo from '~/assets/logo.svg';
 
 const AuthLayout = ({ children }) => {
   return (
-    <Wrapper>
+    <Container>
       <Content>
         <header>
           <img src={logo} alt="Meetapp" />
@@ -15,7 +15,7 @@ const AuthLayout = ({ children }) => {
 
         {children}
       </Content>
-    </Wrapper>
+    </Container>
   );
 };
 

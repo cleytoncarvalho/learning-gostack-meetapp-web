@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
 
-export const Wrapper = styled.div`
+export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
