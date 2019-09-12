@@ -14,13 +14,15 @@ export default createGlobalStyle`
     outline: 0;
   }
 
-  body, html, #root {
+  html, body, #root {
     height: 100%;
+    min-height: 100%;
   }
 
   body {
     -webkit-font-smoothing: antialiased;
-    background-image: linear-gradient(to bottom, #22202C, #402845);
+    background: linear-gradient(to bottom, #22202C, #402845) no-repeat center center fixed;
+    background-color: #402845; /* Fix chrome mobile bottom white space when scrolling */
   }
 
   body, input, button {

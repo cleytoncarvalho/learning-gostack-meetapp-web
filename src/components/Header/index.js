@@ -9,7 +9,9 @@ const Header = () => {
   return (
     <Container>
       <Content>
-        <img src={logo} alt="Meetapp" />
+        <Link to="/dashboard">
+          <img src={logo} alt="Meetapp" />
+        </Link>
 
         <aside>
           <div>
