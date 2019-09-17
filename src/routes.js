@@ -1,5 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Router, Route, Switch } from 'react-router-dom';
+
+import history from '~/services/history';
 
 import AuthLayout from '~/_layouts/auth';
 import DefaultLayout from '~/_layouts/default';
@@ -15,57 +17,59 @@ import Meetup from '~/pages/Meetup';
 function Routes() {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route
-          path="/"
-          render={() => (
-            <AuthLayout>
-              <SignIn />
-            </AuthLayout>
-          )}
-          exact
-        />
-        <Route
-          path="/signup"
-          render={() => (
-            <AuthLayout>
-              <SignUp />
-            </AuthLayout>
-          )}
-        />
-        <Route
-          path="/dashboard"
-          render={() => (
-            <DefaultLayout>
-              <Dashboard />
-            </DefaultLayout>
-          )}
-        />
-        <Route
-          path="/new"
-          render={() => (
-            <DefaultLayout>
-              <New />
-            </DefaultLayout>
-          )}
-        />
-        <Route
-          path="/profile"
-          render={() => (
-            <DefaultLayout>
-              <Profile />
-            </DefaultLayout>
-          )}
-        />
-        <Route
-          path="/meetup"
-          render={() => (
-            <DefaultLayout>
-              <Meetup />
-            </DefaultLayout>
-          )}
-        />
-      </Switch>
+      <Router history={history}>
+        <Switch>
+          <Route
+            path="/"
+            render={() => (
+              <AuthLayout>
+                <SignIn />
+              </AuthLayout>
+            )}
+            exact
+          />
+          <Route
+            path="/signup"
+            render={() => (
+              <AuthLayout>
+                <SignUp />
+              </AuthLayout>
+            )}
+          />
+          <Route
+            path="/dashboard"
+            render={() => (
+              <DefaultLayout>
+                <Dashboard />
+              </DefaultLayout>
+            )}
+          />
+          <Route
+            path="/new"
+            render={() => (
+              <DefaultLayout>
+                <New />
+              </DefaultLayout>
+            )}
+          />
+          <Route
+            path="/profile"
+            render={() => (
+              <DefaultLayout>
+                <Profile />
+              </DefaultLayout>
+            )}
+          />
+          <Route
+            path="/meetup"
+            render={() => (
+              <DefaultLayout>
+                <Meetup />
+              </DefaultLayout>
+            )}
+          />
+        </Switch>
+      </Router>
     </BrowserRouter>
   );
 }

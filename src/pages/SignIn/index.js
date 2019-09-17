@@ -1,16 +1,36 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Form, Input } from '@rocketseat/unform';
+import * as Yup from 'yup';
+
+import { signInRequest } from '~/store/modules/auth/actions';
+
+const schema = Yup.object().shape({
+  email: Yup.string()
+    .email('Informe um e-mail válido.')
+    .required('O e-mail é obrigatório'),
+  password: Yup.string().required('A senha é obrigatória'),
+});
 
 const SignIn = () => {
-  return (
-    <form>
-      <input type="email" name="email" placeholder="Digite seu e-mail" />
-      <input type="password" name="password" placeholder="Sua senha secreta" />
+  const dispatch = useDispatch();
+  const loading = useSelector(state => state.auth.loading);
 
-      <button type="submit">Entrar</button>
+  function handleSubmit({ email, password }) {
+    dispatch(signInRequest(email, password));
+  }
+
+  return (
+    <Form onSubmit={handleSubmit} schema={schema}>
+      <Input type="email" name="email" placeholder="Digite seu e-mail" />
+
+      <Input type="password" name="password" placeholder="Sua senha secreta" />
+
+      <button type="submit">{!loading ? 'Entrar' : 'Aguarde...'}</button>
 
       <Link to="/signup">Criar conta grátis</Link>
-    </form>
+    </Form>
   );
 };
 
