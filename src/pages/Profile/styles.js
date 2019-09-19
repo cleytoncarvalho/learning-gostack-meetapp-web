@@ -21,6 +21,13 @@ export const Container = styled.div`
     }
   }
 
+  input + span {
+    font-size: 14px;
+    color: #e00505;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+  }
+
   hr {
     border: none;
     height: 1px;

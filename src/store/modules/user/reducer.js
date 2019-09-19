@@ -14,14 +14,14 @@ export default function user(state = INITIAL_STATE, action) {
       case '@auth/SIGN_OUT':
         draft.profile = null;
         break;
-      case '@auth/UPDATE_PROFILE_REQUEST':
+      case '@user/UPDATE_PROFILE_REQUEST':
         draft.loading = true;
         break;
-      case '@auth/UPDATE_PROFILE_SUCCESS':
+      case '@user/UPDATE_PROFILE_SUCCESS':
         draft.profile = action.payload.profile;
         draft.loading = false;
         break;
-      case '@auth/UPDATE_PROFILE_FAILURE':
+      case '@user/UPDATE_PROFILE_FAILURE':
         draft.loading = false;
         break;
       default:
