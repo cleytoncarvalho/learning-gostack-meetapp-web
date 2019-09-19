@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { Container, Content } from './styles';
@@ -10,6 +10,7 @@ import { signOut } from '~/store/modules/auth/actions';
 
 const Header = () => {
   const dispatch = useDispatch();
+  const name = useSelector(state => state.user.profile.name);
 
   return (
     <Container>
@@ -20,7 +21,7 @@ const Header = () => {
 
         <aside>
           <div>
-            Cleyton Carvalho
+            {name}
             <Link to="/profile">Meu perfil</Link>
           </div>
 

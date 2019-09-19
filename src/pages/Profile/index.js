@@ -1,24 +1,31 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { MdAddCircleOutline } from 'react-icons/md';
+import { Form, Input } from '@rocketseat/unform';
 
 import { Container } from './styles';
 
 const Profile = () => {
+  const dispatch = useDispatch();
+  const profile = useSelector(state => state.user.profile);
+
+  function handleSubmit(data) {}
+
   return (
     <Container>
-      <form>
-        <input type="text" name="name" placeholder="Nome completo" />
-        <input type="email" name="email" placeholder="Digite seu e-mail" />
+      <Form initialData={profile}>
+        <Input type="text" name="name" placeholder="Nome completo" />
+        <Input type="email" name="email" placeholder="Digite seu e-mail" />
 
         <hr />
 
-        <input
+        <Input
           type="password"
-          name="old_password"
+          name="oldPassword"
           placeholder="Sua senha atual"
         />
-        <input type="password" name="password" placeholder="Nova senha" />
-        <input
+        <Input type="password" name="password" placeholder="Nova senha" />
+        <Input
           type="password"
           name="confirm_password"
           placeholder="Confirmação de senha"
@@ -30,7 +37,7 @@ const Profile = () => {
             <span>Salvar perfil</span>
           </button>
         </footer>
-      </form>
+      </Form>
     </Container>
   );
 };
