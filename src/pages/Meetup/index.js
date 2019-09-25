@@ -1,54 +1,130 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { parseISO, format } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 import { MdEdit, MdDeleteForever, MdEvent, MdPlace } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
-import { MeetupHeader, MeetupContent, LinkButton } from './styles';
+import api from '~/services/api';
+import history from '~/services/history';
 
-import temp from '~/assets/temp.jpg';
+import {
+  MeetupTopMessage,
+  MeetupHeader,
+  MeetupContent,
+  EditButton,
+  CancelButton,
+} from './styles';
 
-const Meetup = () => {
+const Meetup = ({ match }) => {
+  const { id } = match.params;
+
+  const [meetup, setMeetup] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    async function findMeetup() {
+      try {
+        const response = await api.get(`/organizing/${id}`);
+
+        const data = {
+          ...response.data,
+          formattedDate: format(
+            parseISO(response.data.date),
+            "dd 'de' MMMM, 'às' HH:mm",
+            {
+              locale: pt,
+            }
+          ),
+        };
+
+        setMeetup(data);
+        setError(false);
+      } catch (err) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    findMeetup();
+  }, [id]);
+
+  async function handleDelete(meetup_id) {
+    try {
+      await api.delete(`/meetups/${meetup_id}`);
+
+      toast.success('Meetup cancelado com sucesso!');
+      history.push('/dashboard');
+    } catch (err) {
+      const message = String(err.response.data.message);
+
+      toast.error(message);
+    }
+  }
+
   return (
     <>
-      <MeetupHeader>
-        <h1>Meetup da cabeça do meu pau</h1>
+      {loading && <MeetupTopMessage>Carregando...</MeetupTopMessage>}
 
-        <div>
-          <LinkButton to="/edit/2" color="#4DBAF9">
-            <MdEdit size={20} color="#fff" />
-            <span>Editar</span>
-          </LinkButton>
+      {error && (
+        <MeetupTopMessage>
+          Ocorreu um erro ao carregar o Meetup. Atualize a página e tente
+          novamente.
+        </MeetupTopMessage>
+      )}
 
-          <LinkButton to="" color="#e11a3c">
-            <MdDeleteForever size={20} color="#fff" />
-            <span>Cancelar</span>
-          </LinkButton>
-        </div>
-      </MeetupHeader>
+      {!loading && !error && meetup && (
+        <>
+          <MeetupHeader>
+            <h1>{meetup.title}</h1>
 
-      <MeetupContent>
-        <img src={temp} alt="" />
+            {!meetup.past && (
+              <div>
+                <EditButton to={`/edit/${meetup.id}`} color="#4DBAF9">
+                  <MdEdit size={20} color="#fff" />
+                  <span>Editar</span>
+                </EditButton>
 
-        <div>
-          O Meetup de React Native é um evento que reúne a comunidade de
-          desenvolvimento mobile utilizando React a fim de compartilhar
-          conhecimento. Todos são convidados.
-          <br />
-          <br />
-          Caso queira participar como palestrante do meetup envie um e-mail para
-          organizacao@meetuprn.com.br.
-        </div>
+                <CancelButton
+                  onClick={() => handleDelete(meetup.id)}
+                  color="#e11a3c"
+                >
+                  <MdDeleteForever size={20} color="#fff" />
+                  <span>Cancelar</span>
+                </CancelButton>
+              </div>
+            )}
+          </MeetupHeader>
 
-        <span>
-          <MdEvent size={20} color="rgba(255, 255, 255, 0.6)" /> 24 de Junho, às
-          20h
-        </span>
+          <MeetupContent>
+            <img src={meetup.cover.url} alt="" />
 
-        <span>
-          <MdPlace size={20} color="rgba(255, 255, 255, 0.6)" /> Rua Guilherme
-          Gembala, 260
-        </span>
-      </MeetupContent>
+            <div>{meetup.description}</div>
+
+            <span>
+              <MdEvent size={20} color="rgba(255, 255, 255, 0.6)" />
+              {meetup.formattedDate}
+            </span>
+
+            <span>
+              <MdPlace size={20} color="rgba(255, 255, 255, 0.6)" />
+              {meetup.location}
+            </span>
+          </MeetupContent>
+        </>
+      )}
     </>
   );
+};
+
+Meetup.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
 };
 
 export default Meetup;

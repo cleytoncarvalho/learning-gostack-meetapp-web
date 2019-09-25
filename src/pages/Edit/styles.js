@@ -64,3 +64,10 @@ export const Container = styled.div`
     }
   }
 `;
+
+export const MeetupTopMessage = styled.div`
+  text-align: center;
+  color: #fff;
+  font-size: 17px;
+  margin-top: 60px;
+`;

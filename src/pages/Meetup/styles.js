@@ -30,8 +30,8 @@ export const MeetupHeader = styled.div`
   }
 `;
 
-export const LinkButton = styled(Link)`
-  background: ${props => props.color};
+export const EditButton = styled(Link)`
+  background: #4dbaf9;
   color: #fff;
   font-size: 16px;
   font-weight: bold;
@@ -47,7 +47,36 @@ export const LinkButton = styled(Link)`
   justify-content: center;
 
   &:hover {
-    background: ${props => darken(0.05, props.color)};
+    background: ${darken(0.05, '#4DBAF9')};
+  }
+
+  span {
+    margin-left: 10px;
+  }
+
+  @media only screen and (max-width: 800px) {
+    margin-left: 0;
+  }
+`;
+
+export const CancelButton = styled.button`
+  background: #e11a3c;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 20px;
+  height: 42px;
+  border: none;
+  border-radius: 4px;
+  margin-left: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: ${darken(0.05, '#e11a3c')};
   }
 
   span {
@@ -93,4 +122,11 @@ export const MeetupContent = styled.div`
       margin-bottom: 15px;
     }
   }
+`;
+
+export const MeetupTopMessage = styled.div`
+  text-align: center;
+  color: #fff;
+  font-size: 17px;
+  margin-top: 60px;
 `;
