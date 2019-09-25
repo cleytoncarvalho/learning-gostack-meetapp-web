@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Router, Switch } from 'react-router-dom';
+import { Router, Switch } from 'react-router-dom';
 
 import Route from './Route';
 
@@ -12,22 +12,22 @@ import Dashboard from '~/pages/Dashboard';
 import New from '~/pages/New';
 import Profile from '~/pages/Profile';
 import Meetup from '~/pages/Meetup';
+import Edit from '~/pages/Edit';
 
 function Routes() {
   return (
-    <BrowserRouter>
-      <Router history={history}>
-        <Switch>
-          <Route path="/" component={SignIn} exact />
-          <Route path="/signup" component={SignUp} />
+    <Router history={history}>
+      <Switch>
+        <Route path="/" component={SignIn} exact />
+        <Route path="/signup" component={SignUp} />
 
-          <Route path="/dashboard" component={Dashboard} isPrivate />
-          <Route path="/new" component={New} isPrivate />
-          <Route path="/profile" component={Profile} isPrivate />
-          <Route path="/meetup" component={Meetup} isPrivate />
-        </Switch>
-      </Router>
-    </BrowserRouter>
+        <Route path="/dashboard" component={Dashboard} isPrivate />
+        <Route path="/new" component={New} isPrivate />
+        <Route path="/profile" component={Profile} isPrivate />
+        <Route path="/meetup/:id" component={Meetup} isPrivate />
+        <Route path="/edit/:id" component={Edit} isPrivate />
+      </Switch>
+    </Router>
   );
 }
 

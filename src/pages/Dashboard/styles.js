@@ -43,6 +43,13 @@ export const ListContent = styled.ul`
   margin-top: 50px;
 `;
 
+export const ListLoading = styled.div`
+  text-align: center;
+  color: #fff;
+  font-size: 17px;
+  margin-top: 50px;
+`;
+
 export const ListItem = styled.li`
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
@@ -75,4 +82,11 @@ export const ListItem = styled.li`
       margin-right: 30px;
     }
   }
+`;
+
+export const ListEmpty = styled.div`
+  text-align: center;
+  color: #fff;
+  font-size: 17px;
+  margin-top: 60px;
 `;
