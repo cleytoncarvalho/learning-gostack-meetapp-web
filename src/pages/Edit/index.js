@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { MdAddCircleOutline } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import { MdArrowBack, MdAddCircleOutline } from 'react-icons/md';
 import { Form, Input } from '@rocketseat/unform';
 import { parseISO } from 'date-fns';
 import * as Yup from 'yup';
@@ -100,6 +101,11 @@ const Edit = ({ match }) => {
           <Input type="text" name="location" placeholder="Localização" />
 
           <footer>
+            <Link to={`/meetup/${id}`}>
+              <MdArrowBack size={20} color="#fff" />
+              <div>Voltar</div>
+            </Link>
+
             <button type="submit">
               <MdAddCircleOutline size={20} color="#fff" />
               <div>{!loadingSave ? 'Atualizar meetup' : 'Aguarde...'}</div>

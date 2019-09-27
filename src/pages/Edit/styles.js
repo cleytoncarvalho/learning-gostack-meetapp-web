@@ -36,18 +36,37 @@ export const Container = styled.div`
 
     footer {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+
+      a {
+        background: #601d7e;
+        color: #fff;
+        font-size: 13px;
+        height: 36px;
+        border-radius: 4px;
+        font-weight: bold;
+        padding: 0 10px;
+
+        display: flex;
+        align-items: center;
+
+        &:hover {
+          background: ${darken(0.05, '#601d7e')};
+        }
+
+        div {
+          margin: 3px 0 0px 6px;
+        }
+      }
 
       button {
         background: #f94d6a;
         color: #fff;
         font-size: 16px;
-        text-align: center;
         height: 42px;
         border: none;
         border-radius: 4px;
         font-weight: bold;
-        margin-top: 5px;
         padding: 0 20px;
 
         display: flex;

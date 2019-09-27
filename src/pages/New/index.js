@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { MdAddCircleOutline } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import { MdArrowBack, MdAddCircleOutline } from 'react-icons/md';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
@@ -60,6 +61,11 @@ const New = () => {
         <Input type="text" name="location" placeholder="Localização" />
 
         <footer>
+          <Link to="/dashboard">
+            <MdArrowBack size={20} color="#fff" />
+            <div>Voltar</div>
+          </Link>
+
           <button type="submit">
             <MdAddCircleOutline size={20} color="#fff" />
             <div>{!loading ? 'Salvar meetup' : 'Aguarde...'}</div>
