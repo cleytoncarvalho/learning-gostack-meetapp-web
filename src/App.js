@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 
 import Routes from './routes';
 
-import './config/reactotron';
+import './config/ReactotronConfig';
 
 import { store, persistor } from './store';
 
