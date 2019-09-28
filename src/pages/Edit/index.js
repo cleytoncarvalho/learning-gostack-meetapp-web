@@ -41,7 +41,7 @@ const Edit = ({ match }) => {
         const data = {
           ...response.data,
           date: parseISO(response.data.date),
-          file_id: response.data.cover,
+          file_id: response.data.File,
         };
 
         setMeetup(data);

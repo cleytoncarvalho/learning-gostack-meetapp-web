@@ -99,7 +99,7 @@ const Meetup = ({ match }) => {
           </MeetupHeader>
 
           <MeetupContent>
-            <img src={meetup.cover.url} alt="" />
+            <img src={meetup.File.url} alt="" />
 
             <div>{meetup.description}</div>
 
