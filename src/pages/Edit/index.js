@@ -66,12 +66,12 @@ const Edit = ({ match }) => {
 
       history.push(`/meetup/${id}`);
     } catch (err) {
+      setLoadingSave(false);
+
       toast.error(
         'Erro ao salvar o meetup. Verifique os dados e tente novamente.'
       );
     }
-
-    setLoadingSave(false);
   }
 
   return (

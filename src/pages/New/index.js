@@ -36,12 +36,12 @@ const New = () => {
 
       history.push('/dashboard');
     } catch (err) {
+      setLoading(false);
+
       toast.error(
         'Erro ao salvar o meetup. Verifique os dados e tente novamente.'
       );
     }
-
-    setLoading(false);
   }
 
   return (
