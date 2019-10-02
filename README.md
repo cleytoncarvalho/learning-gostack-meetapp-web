@@ -2,7 +2,7 @@
 
 # Meetapp
 
-Final ReactJS project developed at the GoStack bootcamp. Web version of the application for meetups appointments.
+Final ReactJS project developed at the GoStack bootcamp. Web version of the application for meetup appointments.
 
 Techs:
 
