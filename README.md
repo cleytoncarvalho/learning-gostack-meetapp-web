@@ -1,10 +1,10 @@
 ![Meetapp](docs/cover.jpg?raw=true 'Meetapp')
 
-# Meetapp
+# Learning - ReactJS
 
-Final ReactJS project developed at the GoStack bootcamp. Web version of the application for meetup appointments.
+:us: Project part of the bootcamp Gostack from Rocketseat. Web version of the application for meetup appointments.
 
-Techs:
+:brazil: Projeto parte do bootcamp Gostack da Rocketseat. Versão web da aplicação para agendar encontros.
 
 - ReactJS
 - React Hooks
