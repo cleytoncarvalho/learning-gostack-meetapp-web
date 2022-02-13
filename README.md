@@ -6,6 +6,8 @@
 
 :brazil: Projeto parte do bootcamp Gostack da Rocketseat. Versão web da aplicação para agendar encontros.
 
+:toolbox: Used in this project:
+
 - ReactJS
 - React Hooks
 - React Router
